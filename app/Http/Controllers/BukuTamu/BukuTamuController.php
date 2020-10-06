@@ -31,22 +31,18 @@ class BukuTamuController extends Controller
     public function api(Request $request)
     {
 
+        $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
         if ($request->jenis_jasa != 0) {
             $bukuTamu = BukuTamu::where('jenis_paket', $request->jenis_jasa)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        } else {
-            $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
         if ($request->status != 99) {
             $bukuTamu = BukuTamu::where('status', $request->status)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        } else {
-            $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
-        if ($request->tgl_tinggal) {
+        if ($request->tgl_tinggal != null) {
             $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        } else {
-            $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
         return DataTables::of($bukuTamu)
