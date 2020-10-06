@@ -42,7 +42,7 @@ class BukuTamuController extends Controller
         }
 
         if ($request->tgl_tinggal != null) {
-            $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            $bukuTamu = BukuTamu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
         return DataTables::of($bukuTamu)

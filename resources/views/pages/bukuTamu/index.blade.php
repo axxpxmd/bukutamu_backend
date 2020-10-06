@@ -48,8 +48,10 @@
                         </div> 
                         <div class="form-group row" style="margin-top: -10px">
                             <label for="tanggal" class="col-form-label s-12 col-md-3 text-right"><strong>Tanggal :</strong></label>
-                            <div class="col-sm-4">
-                                <input type="text" name="tgl_tinggal" id="tgl_tinggal" placeholder="" class="form-control r-0 light s-12 col-md-8" autocomplete="off" onchange="selectOnChange()"/>
+                            <div class="col-sm-4 row">
+                                <input type="text" name="tgl_tinggal" id="tgl_tinggal" placeholder="" class="form-control r-0 light s-12 col-md-4 ml-3" autocomplete="off" onchange="selectOnChange()"/>
+                                <span class="mt-1 ml-2 mr-2">-</span>
+                                <input type="text" name="tgl_tinggal1" id="tgl_tinggal1" placeholder="" class="form-control r-0 light s-12 col-md-4" autocomplete="off" onchange="selectOnChange()"/>
                             </div>
                         </div>
                     </div>
@@ -103,6 +105,7 @@
                 data.jenis_jasa = $('#jenis_jasa').val();
                 data.status = $('#status').val();
                 data.tgl_tinggal = $('#tgl_tinggal').val();
+                data.tgl_tinggal1 = $('#tgl_tinggal1').val();
             }
         },
         columns: [
@@ -119,6 +122,13 @@
     });
 
     $('#tgl_tinggal').datetimepicker({
+        format:'Y-m-d',
+        onShow:function( ct ){},
+        timepicker:false
+    });
+
+    
+    $('#tgl_tinggal1').datetimepicker({
         format:'Y-m-d',
         onShow:function( ct ){},
         timepicker:false
