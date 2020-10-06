@@ -17,9 +17,6 @@
                     <li class="nav-item">
                         <a class="nav-link active show" id="tab1" data-toggle="tab" href="#semua-data" role="tab"><i class="icon icon-home2"></i>Semua Data</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" id="tab2" data-toggle="tab" href="#tambah-data" role="tab"><i class="icon icon-plus"></i>Tambah Data</a>
-                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -36,14 +33,13 @@
                                         <thead>
                                             <th width="30">No</th>
                                             <th>ID Registras</th>
-                                            <th>Nama</th>
+                                            <th>Nama Driver</th>
                                             <th>Jenis Jasa</th>
                                             <th>Plat Nomor</th>
                                             <th>Penerima</th>
-                                            <th>Tanggal</th>
-                                            <th>Jam</th>
-                                            <th width="60">Foto</th>
-                                            <th></th>
+                                            <th width="150">Waktu</th>
+                                            <th width="100">Status</th>
+                                            <th>Aksi</th>
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -63,6 +59,7 @@
         processing: true,
         serverSide: true,
         order: [ 0, 'asc' ],
+        pageLength : 15,
         ajax: {
             url: "{{ route($route.'api') }}",
             method: 'POST'
@@ -74,129 +71,28 @@
             {data: 'jenis_paket', name: 'jenis_paket'},
             {data: 'no_plat', name: 'no_plat'},
             {data: 'penerima', name: 'penerima'},
-            {data: 'tanggal', name: 'tanggal'},
-            {data: 'jam', name: 'jam'},
+            {data: 'waktu', name: 'waktu'},
+            {data: 'status', name: 'status', className: 'text-center'},
             {data: 'action', name: 'action', orderable: false, searchable: false, className: 'text-center'}
         ]
-    });
-
-    (function () {
-        'use strict';
-        $('.input-file').each(function () {
-            var $input = $(this),
-                $label = $input.next('.js-labelFile'),
-                labelVal = $label.html();
-
-            $input.on('change', function (element) {
-                var fileName = '';
-                if (element.target.value) fileName = element.target.value.split('\\').pop();
-                fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label
-                    .removeClass('has-file').html(labelVal);
-            });
-        });
-    })();
-
-    function tampilkanPreview(gambar, idpreview) {
-        var gb = gambar.files;
-        for (var i = 0; i < gb.length; i++) {
-            var gbPreview = gb[i];
-            var imageType = /image.*/;
-            var preview = document.getElementById(idpreview);
-            var reader = new FileReader();
-            if (gbPreview.type.match(imageType)) {
-                preview.file = gbPreview;
-                reader.onload = (function (element) {
-                    return function (e) {
-                        element.src = e.target.result;
-                    };
-                })(preview);
-                reader.readAsDataURL(gbPreview);
-            } else {
-                $.confirm({
-                    title: '',
-                    content: 'Tipe file tidak boleh! haruf format gambar (png, jpg)',
-                    icon: 'icon icon-close',
-                    theme: 'modern',
-                    closeIcon: true,
-                    animation: 'scale',
-                    type: 'red',
-                    buttons: {
-                        ok: {
-                            text: "ok!",
-                            btnClass: 'btn-primary',
-                            keys: ['enter'],
-                            action: add()
-                        }
-                    }
-                });
-            }
-        }
-    }
-
-    function add(){
-        save_method = "add";
-        $('#form').trigger('reset');
-        $('#formTitle').html('Tambah Data');
-        $('input[name=_method]').val('POST');
-        $('#txtAction').html('');
-        $('#reset').show();
-        $('#preview').attr({ 'src': '-', 'alt': ''});
-        $('#changeText').html('Browse Image')
-        $('#username').focus();
-    }
-
-    $('#form').on('submit', function (e) {
-        if ($(this)[0].checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        else{
-            $('#alert').html('');
-            url = "{{ route($route.'store') }}",
-            $.ajax({
-                url : url,
-                type : 'POST',
-                data: new FormData(($(this)[0])),
-                contentType: false,
-                processData: false,
-                success : function(data) {
-                    console.log(data);
-                    $('#alert').html("<div role='alert' class='alert alert-success alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button><strong>Success!</strong> " + data.message + "</div>");
-                    table.api().ajax.reload();
-                    add();    
-                },
-                error : function(data){
-                    err = '';
-                    respon = data.responseJSON;
-                    if(respon.errors){
-                        $.each(respon.errors, function( index, value ) {
-                            err = err + "<li>" + value +"</li>";
-                        });
-                    }
-                    $('#alert').html("<div role='alert' class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button><strong>Error!</strong> " + respon.message + "<ol class='pl-3 m-0'>" + err + "</ol></div>");
-                }
-            });
-            return false;
-        }
-        $(this).addClass('was-validated');
     });
 
     function remove(id){
         $.confirm({
             title: '',
-            content: 'Apakah Anda yakin akan menghapus data ini ?',
+            content: 'Apakah Anda yakin Paket ini telah diambil ?',
             icon: 'icon icon-question amber-text',
             theme: 'modern',
             closeIcon: true,
             animation: 'scale',
-            type: 'red',
+            type: 'green',
             buttons: {
                 ok: {
                     text: "ok!",
                     btnClass: 'btn-primary',
                     keys: ['enter'],
                     action: function(){
-                        $.post("{{ route($route.'destroy', ':id') }}".replace(':id', id), {'_method' : 'DELETE'}, function(data) {
+                        $.post("{{ route($route.'update', ':id') }}".replace(':id', id), {'_method' : 'PATCH'}, function(data) {
                            table.api().ajax.reload();
                             if(id == $('#id').val()) add();
                         }, "JSON").fail(function(){

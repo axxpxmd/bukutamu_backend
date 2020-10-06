@@ -12,7 +12,7 @@ $template = App\Models\Template::select('id', 'logo', 'logo_title')->first();
 
     <!-- Title --> 
     <link rel="icon" href="{{ asset('images/logo/'.$template->logo_title) }}" type="image/x-icon">
-    <title>{{ config('app.name') }} @yield('title')</title>
+    <title>DISDUKCAPIL @yield('title')</title>
 
     <!-- CSS -->
     @yield('style')

@@ -30,24 +30,50 @@ class BukuTamuController extends Controller
 
     public function api()
     {
-        $bukuTamu = BukuTamu::all();
+        $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
         return DataTables::of($bukuTamu)
             ->addColumn('action', function ($p) {
-                return "
-                <a href='#' onclick='remove(" . $p->id . ")' class='text-danger' title='Hapus Permission'><i class='icon-remove'></i></a>";
+                if ($p->status == 0) {
+                    return "<a href='#' onclick='remove(" . $p->id . ")' class='text-success' title='Hapus Permission'><i class='icon-check'></i></a>";
+                } else {
+                    return '-';
+                }
             })
-            ->editColumn('nama', function ($p) {
-                return "<a href='" . route($this->route . 'show', $p->id) . "' class='text-primary' title='Show Data'>" . $p->nama . "</a>";
+            ->editColumn('id_registrasi', function ($p) {
+                return "<a href='" . route($this->route . 'show', $p->id) . "' class='text-primary' title='Show Data'>" . $p->id_registrasi . "</a>";
             })
-            // ->editColumn('foto',  function ($p) {
-            //     if ($p->foto != null) {
-            //         return "<img width='50' class='img-fluid mx-auto d-block rounded-circle' alt='foto' src='" . $this->path . $p->foto . "'>";
-            //     } else {
-            //         return "<img width='50' class='rounded img-fluid mx-auto d-block' alt='foto' src='" . asset('images/404.png') . "'>";
-            //     }
-            // })
+            ->editColumn('jenis_paket', function ($p) {
+                if ($p->jenis_paket == 1) {
+                    return 'Grab';
+                } else {
+                    return 'Gojek';
+                }
+            })
+            ->addColumn('waktu', function ($p) {
+                return $p->tanggal . '&nbsp;&nbsp;&nbsp; ' . $p->jam;
+            })
+            ->editColumn('status', function ($p) {
+                if ($p->status == 0) {
+                    return "Belum Diambil";
+                } else {
+                    return "Sudah Diambil";
+                }
+            })
             ->addIndexColumn()
-            ->rawColumns(['action', 'nama'])
+            ->rawColumns(['action', 'id_registrasi', 'waktu', 'status'])
             ->toJson();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $bukuTamu = BukuTamu::find($id);
+        $bukuTamu->update([
+            'status' => 1
+        ]);
+
+        return response()->json([
+            'message' => 'Data ' . $this->title . ' berhasil diperbaharui.'
+        ]);
     }
 }
