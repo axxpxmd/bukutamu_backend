@@ -101,6 +101,8 @@ class BukuTamuController extends Controller
 
         $bukuTamu = BukuTamu::find($id);
 
+        // dd($bukuTamu);
+
         return view($this->view . 'show', compact(
             'route',
             'title',

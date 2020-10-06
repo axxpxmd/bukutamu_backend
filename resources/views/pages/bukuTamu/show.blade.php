@@ -8,7 +8,7 @@
                 <div class="col">
                     <h4>
                         <i class="icon icon-users mr-2"></i>
-                        Show {{ $title }} | {{ $admin_detail->nama }}
+                        Show {{ $title }} | {{ $bukuTamu->nama }}
                     </h4>
                 </div>
             </div>
@@ -16,15 +16,6 @@
                 <ul role="tablist" class="nav nav-material nav-material-white responsive-tab">
                     <li>
                         <a class="nav-link" href="{{ route($route.'index') }}"><i class="icon icon-arrow_back"></i>Semua Data</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active show" id="tab1" data-toggle="tab" href="#semua-data" role="tab"><i class="icon icon-user"></i>Pegawai</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab2" data-toggle="tab" href="#edit-data" role="tab"><i class="icon icon-edit"></i>Edit Data</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route($route.'editPassword', $admin_detail->id) }}" class="nav-link"><i class="icon icon-key4"></i>Ganti Password</a>
                     </li>
                 </ul>
             </div>
@@ -36,36 +27,40 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <h6 class="card-header"><strong>Data Pegawai</strong></h6>
+                            <h6 class="card-header"><strong>Data Driver</strong></h6>
                             <div class="card-body">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <label class="col-md-2 text-right s-12"><strong>Username :</strong></label>
-                                        <label class="col-md-3 s-12">{{ $admin->username }}</label>
+                                        <label class="col-md-2 text-right s-12"><strong>ID REgistrasi :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->id_registrasi }}</label>
                                     </div>
                                     <div class="row">
-                                        <label class="col-md-2 text-right s-12"><strong>Role :</strong></label>
-                                        <label class="col-md-3 s-12">{{ $role->name }}</label>
+                                        <label class="col-md-2 text-right s-12"><strong>Nama Driver :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->nama }}</label>
                                     </div>
                                     <div class="row">
-                                        <label class="col-md-2 text-right s-12"><strong>Nama :</strong></label>
-                                        <label class="col-md-3 s-12">{{ $admin_detail->nama }}</label>
+                                        <label class="col-md-2 text-right s-12"><strong>Jenis Jasa :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->jenis_paket == 1 ? 'Grab' : 'Gojek' }}</label>
                                     </div>
                                     <div class="row">
-                                        <label class="col-md-2 text-right s-12"><strong>Email :</strong></label>
-                                        <label class="col-md-3 s-12">{{ $admin_detail->email }}</label>
+                                        <label class="col-md-2 text-right s-12"><strong>No Plat :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->no_plat }}</label>
                                     </div>
                                     <div class="row">
-                                        <label class="col-md-2 text-right s-12"><strong>No Telpon :</strong></label>
-                                        <label class="col-md-3 s-12">{{ $admin_detail->no_telp }}</label>
+                                        <label class="col-md-2 text-right s-12"><strong>Penerima :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->penerima }}</label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-2 text-right s-12"><strong>Tanggal :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->tanggal->isoFormat('D MMMM Y') }}</label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-2 text-right s-12"><strong>Jam :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->tanggal->isoFormat('D MMMM Y') }}</label>
                                     </div>
                                     <div class="row">
                                         <label class="col-md-2 text-right s-12"><strong>Foto :</strong></label>
-                                        @if ($admin_detail->foto != null)
-                                        <img class="ml-2 m-t-7 rounded-circle" src="{{ asset('images/ava/'.$admin_detail->foto) }}" width="100" alt="icon">
-                                        @else
-                                        <img class="ml-2 m-t-7 rounded-circle" src="{{ asset('images/404.png') }}" width="100" alt="icon">
-                                        @endif
+                                        <img class="ml-2 m-t-7 rounded-circle" src="{{ config('app.sftp_src').'/ava/'.$bukuTamu->foto }}" width="100" alt="icon">
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +68,6 @@
                     </div>
                 </div>
             </div>
-            @include('pages.masterRole.pengguna.form_edit')
         </div>
     </div>
 </div>
