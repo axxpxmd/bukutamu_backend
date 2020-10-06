@@ -32,7 +32,7 @@
                                     <table id="dataTable" class="table table-striped table-bordered" style="width:100%">
                                         <thead>
                                             <th width="30">No</th>
-                                            <th>ID Registras</th>
+                                            <th>ID Registrasi</th>
                                             <th>Nama Driver</th>
                                             <th>Jenis Jasa</th>
                                             <th>Plat Nomor</th>
