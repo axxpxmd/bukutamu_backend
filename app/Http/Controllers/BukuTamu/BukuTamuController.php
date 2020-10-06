@@ -41,7 +41,11 @@ class BukuTamuController extends Controller
             $bukuTamu = BukuTamu::where('status', $request->status)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
-        if ($request->tgl_tinggal != null && $request->tgl_tinggal1 != null) {
+        if ($request->tgl_tinggal != null) {
+            $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        } elseif ($request->tgl_tinggal1 != null) {
+            $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        } elseif ($request->tgl_tinggal != null && $request->tgl_tinggal1 != null) {
             $bukuTamu = BukuTamu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
