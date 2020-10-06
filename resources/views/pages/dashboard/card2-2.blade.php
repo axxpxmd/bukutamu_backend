@@ -22,7 +22,7 @@
                             <div class="pt-5 pb-2 pl-5 pr-5">
                                 <h5 class="font-weight-normal s-14">Today's Income</h5>
                                 <span class="s-48 font-weight-lighter text-primary">
-                                    <small>$</small>960
+                                    {{ $today }}
                                 </span>
                                 <div class="float-right">
                                     <span class="icon icon-money-bag s-48"></span>

@@ -19,25 +19,7 @@
             <div class="tab-pane animated fadeInRightShort show active" id="v-pills-w1-tab1" role="tabpanel" aria-labelledby="v-pills-w1-tab1">
                 <div class="row p-3">
                     <div class="col-md-6">
-                        <div class="">
-                            <div style="height: 328px">
-                                <canvas data-chart="chartJs"
-                                        data-chart-type="pie"
-                                        data-dataset="[[75, 50], [25, 50]]"
-                                        data-labels="[['Disk'],['Database']]"
-                                        data-dataset-options="[
-                                            {
-                                                label: 'Disk',
-                                                backgroundColor: ['#4285F4', '#7DC855']
-                                            },
-                                            {
-                                                label: 'Database',
-                                                backgroundColor: ['#FFEB3B', '#36A2EB']
-                                            },
-                                        ]">
-                                </canvas>
-                            </div>
-                        </div>
+                        @include('pages.dashboard.charts')
                     </div>
                     <div class="col-md-6">
                         <div class="card-body pt-0">

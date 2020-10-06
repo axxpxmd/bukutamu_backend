@@ -21,6 +21,42 @@
             </div>
         </div>
     </header>
+    <div class="container-fluid my-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card no-b">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="jenis_jasa" class="col-form-label s-12 col-md-3 text-right"><strong>Jenis Jasa :</strong></label>
+                            <div class="col-sm-4">
+                                <select name="jenis_jasa" id="jenis_jasa" class="select2 form-control r-0 light s-12" onchange="selectOnChange()">
+                                    <option value="0">Semua</option>
+                                    <option value="1">Grab</option>
+                                    <option value="2">Gojek</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="form-group row" style="margin-top: -10px">
+                            <label for="status" class="col-form-label s-12 col-md-3 text-right"><strong>Status :</strong></label>
+                            <div class="col-sm-4">
+                                <select name="status" id="status" class="select2 form-control r-0 light s-12" onchange="selectOnChange()">
+                                    <option value="99">Semua</option>
+                                    <option value="0">Belum Diambil</option>
+                                    <option value="1">Sudah Diambil</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="form-group row" style="margin-top: -10px">
+                            <label for="tanggal" class="col-form-label s-12 col-md-3 text-right"><strong>Tanggal :</strong></label>
+                            <div class="col-sm-4">
+                                <input type="text" name="tgl_tinggal" id="tgl_tinggal" placeholder="" class="form-control r-0 light s-12 col-md-8" autocomplete="off" onchange="selectOnChange()"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid relative animatedParent animateOnce">
         <div class="tab-content my-3" id="pills-tabContent">
             <div class="tab-pane animated fadeInUpShort show active" id="semua-data" role="tabpanel">
@@ -37,7 +73,7 @@
                                             <th>Jenis Jasa</th>
                                             <th>Plat Nomor</th>
                                             <th>Penerima</th>
-                                            <th width="150">Waktu</th>
+                                            <th width="200">Waktu</th>
                                             <th width="100">Status</th>
                                             <th>Aksi</th>
                                         </thead>
@@ -62,7 +98,12 @@
         pageLength : 15,
         ajax: {
             url: "{{ route($route.'api') }}",
-            method: 'POST'
+            method: 'POST',
+            data: function (data) {
+                data.jenis_jasa = $('#jenis_jasa').val();
+                data.status = $('#status').val();
+                data.tgl_tinggal = $('#tgl_tinggal').val();
+            }
         },
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, align: 'center', className: 'text-center'},
@@ -76,6 +117,16 @@
             {data: 'action', name: 'action', orderable: false, searchable: false, className: 'text-center'}
         ]
     });
+
+    $('#tgl_tinggal').datetimepicker({
+        format:'Y-m-d',
+        onShow:function( ct ){},
+        timepicker:false
+    });
+
+    function selectOnChange(){
+        table.api().ajax.reload();
+    }
 
     function remove(id){
         $.confirm({

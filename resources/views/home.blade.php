@@ -17,7 +17,6 @@
     <div class="container-fluid relative animatedParent animateOnce">
         <div class="tab-content pb-3" id="v-pills-tabContent">
             <div class="tab-pane animated fadeInUpShort show active" id="v-pills-1">
-            @include('pages.dashboard.card1')
             @include('pages.dashboard.card2')
             </div>
         </div>
