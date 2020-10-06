@@ -17,7 +17,7 @@
                     <div class="tab-pane animated fadeIn show active" id="v-pills-tab1" role="tabpanel" aria-labelledby="v-pills-tab1">
                         <div class="bg-primary text-white lighten-2">
                             <div class="pt-5 pb-2 pl-5 pr-5">
-                                <h5 class="font-weight-normal s-14">Today's Income</h5>
+                                {{-- <h5 class="font-weight-normal s-14"></h5> --}}
                                 <span class="s-48 font-weight-lighter text-primary">
                                     {{ $today }}
                                 </span>
@@ -26,13 +26,54 @@
                                 </div>
                             </div>
                             <canvas width="378" 
-                                    height="126" 
+                                    height="30" 
                                     data-chart="spark"     
                                     data-chart-type="line"
                                     data-dataset="[[28,530,200,430]]" 
                                     data-labels="['a','b','c','d']"
                                     data-dataset-options="[{ borderColor:  'rgba(54, 162, 235, 1)', backgroundColor: 'rgba(54, 162, 235,1)' }]">
                             </canvas>
+                        </div>
+                        <div class="slimScroll b-b" data-height="150">
+                            <div class="table-responsive">
+                                <table class="table table-hover earning-box">
+                                    <thead class="no-b">
+                                        <tr>
+                                            <th colspan="2"></th>
+                                            <th>Proses</th>
+                                            <th>Selesai</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="w-10">
+                                                <a href="panel-page-profile.html" class="avatar avatar-lg">
+                                                    <img src="{{ asset('images/logo/gojek.png') }}" alt="">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <h6>Gojek</h6>
+                                                {{-- <small class="text-muted">Marketing Manager</small> --}}
+                                            </td>
+                                            <td>{{ $gojekproses }}</td>
+                                            <td>{{ $gojekselesai }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w-10">
+                                                <a href="panel-page-profile.html" class="avatar avatar-lg">
+                                                    <img src="{{ asset('images/logo/grab.jpg') }}" alt="">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <h6>Grab</h6></h6>
+                                                {{-- <small class="text-muted">Marketing Manager</small> --}}
+                                            </td>
+                                            <td>{{ $grabproses }}</td>
+                                            <td>{{ $grabselesai }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

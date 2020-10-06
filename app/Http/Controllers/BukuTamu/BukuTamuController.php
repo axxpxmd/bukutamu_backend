@@ -41,7 +41,7 @@ class BukuTamuController extends Controller
             $bukuTamu = BukuTamu::where('status', $request->status)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
-        if ($request->tgl_tinggal != null) {
+        if ($request->tgl_tinggal != null && $request->tgl_tinggal1 != null) {
             $bukuTamu = BukuTamu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
@@ -88,5 +88,19 @@ class BukuTamuController extends Controller
         return response()->json([
             'message' => 'Data ' . $this->title . ' berhasil diperbaharui.'
         ]);
+    }
+
+    public function show($id)
+    {
+        $route = $this->route;
+        $title = $this->title;
+
+        $bukuTamu = BukuTamu::find($id);
+
+        return view($this->view . 'show', compact(
+            'route',
+            'title',
+            'bukuTamu'
+        ));
     }
 }

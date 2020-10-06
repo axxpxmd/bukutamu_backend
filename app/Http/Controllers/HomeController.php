@@ -36,6 +36,20 @@ class HomeController extends Controller
 
         $today = BukuTamu::whereDate('tanggal', $tanggal)->count();
 
-        return view('home', compact('gojek', 'grab', 'today'));
+        $gojekproses = BukuTamu::where('jenis_paket', 2)->where('status', 0)->count();
+        $grabproses  = BukuTamu::where('jenis_paket', 1)->where('status', 0)->count();
+
+        $gojekselesai = BukuTamu::where('jenis_paket', 2)->where('status', 1)->count();
+        $grabselesai = BukuTamu::where('jenis_paket', 1)->where('status', 1)->count();
+
+        return view('home', compact(
+            'gojek',
+            'grab',
+            'today',
+            'gojekproses',
+            'grabproses',
+            'gojekselesai',
+            'grabselesai'
+        ));
     }
 }
