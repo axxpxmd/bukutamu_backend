@@ -73,5 +73,9 @@ Route::group(['middleware' => ['auth']], function () {
         // Belum Diambil
         Route::resource('belum-diambil', 'BelumDiambilController');
         Route::post('belum-diambil', 'BelumDiambilController@api')->name('belum-diambil.api');
+        // Report
+        Route::resource('report', 'ReportController');
+        Route::post('report/api', 'ReportController@api')->name('report.api');
+        Route::post('cetak', 'ReportController@print')->name('cetak');
     });
 });

@@ -49,4 +49,10 @@
             <span>Sudah Diambil</span>
         </a>
     </li>
+    <li class="no-b">
+        <a href={{ route('master-data.report.index') }}>
+            <i class="icon icon-report amber-text s-18"></i> 
+            <span>Report</span>
+        </a>
+    </li>
 </ul>
