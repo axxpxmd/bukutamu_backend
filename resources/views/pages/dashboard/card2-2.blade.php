@@ -6,7 +6,7 @@
                     <div class="col">
                         <ul id="myTab4" role="tablist" class="nav nav-tabs card-header-tabs nav-material nav-material-white float-right">
                             <li class="nav-item">
-                                <a class="nav-link active show" id="tab1" data-toggle="tab" href="#v-pills-tab1" role="tab" aria-controls="tab1" aria-expanded="true" aria-selected="true">Today</a>
+                                <a class="nav-link active show" id="tab1" data-toggle="tab" href="#v-pills-tab1" role="tab" aria-controls="tab1" aria-expanded="true" aria-selected="true">Hari Ini</a>
                             </li>
                         </ul>
                     </div>
@@ -47,12 +47,12 @@
                                     <tbody>
                                         <tr>
                                             <td class="w-10">
-                                                <a href="panel-page-profile.html" class="avatar avatar-lg">
-                                                    <img src="{{ asset('images/logo/gojek.png') }}" alt="">
+                                                <a href="panel-page-profile.html">
+                                                    <img class="mt-2" src="{{ asset('images/logo/gojek.png') }}" alt="">
                                                 </a>
                                             </td>
                                             <td>
-                                                <h6>Gojek</h6>
+                                                <h6 class="mt-2">Gojek</h6>
                                                 {{-- <small class="text-muted">Marketing Manager</small> --}}
                                             </td>
                                             <td>{{ $gojekproses }}</td>
@@ -60,12 +60,12 @@
                                         </tr>
                                         <tr>
                                             <td class="w-10">
-                                                <a href="panel-page-profile.html" class="avatar avatar-lg">
-                                                    <img src="{{ asset('images/logo/grab.jpg') }}" alt="">
+                                                <a href="panel-page-profile.html">
+                                                    <img class="mt-2" src="{{ asset('images/logo/grab.jpg') }}" alt="">
                                                 </a>
                                             </td>
                                             <td>
-                                                <h6>Grab</h6></h6>
+                                                <h6 class="mt-2">Grab</h6>
                                                 {{-- <small class="text-muted">Marketing Manager</small> --}}
                                             </td>
                                             <td>{{ $grabproses }}</td>

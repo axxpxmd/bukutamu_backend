@@ -85,8 +85,8 @@
                                             <th>Plat Nomor</th>
                                             <th>Penerima</th>
                                             <th width="200">Waktu</th>
+                                            <th>Tujuan</th>
                                             <th width="100">Status</th>
-                                            <th>Aksi</th>
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -133,8 +133,8 @@
             {data: 'no_plat', name: 'no_plat'},
             {data: 'penerima', name: 'penerima'},
             {data: 'waktu', name: 'waktu'},
+            {data: 'tujuan', name: 'tujuan'},
             {data: 'status', name: 'status', className: 'text-center'},
-            {data: 'action', name: 'action', orderable: false, searchable: false, className: 'text-center'}
         ]
     });
 

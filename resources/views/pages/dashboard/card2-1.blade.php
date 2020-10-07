@@ -5,7 +5,7 @@
             <div class="col">
                 <ul class="nav nav-tabs card-header-tabs nav-material">
                     <li class="nav-item">
-                        <a class="nav-link active show" id="w1-tab1" data-toggle="tab" href="#v-pills-w1-tab1">Today</a>
+                        <a class="nav-link active show" id="w1-tab1" data-toggle="tab" href="#v-pills-w1-tab1">Keseluruhan Data</a>
                     </li>
                 </ul>
             </div>

@@ -21,6 +21,7 @@
                 <th>No Plat</th>
                 <th>Tanggal</th>
                 <th>Jam</th>
+                <th>Tujuan</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -34,6 +35,7 @@
                 <td>{{ $i->no_plat }}</td>
                 <td>{{ $i->tanggal->isoFormat('D MMMM Y') }}</td>
                 <td>{{ $i->jam }}</td>
+                <th>{{ $i->tujuan == 1 ? 'Mengambil' : 'Mengirim' }}</th>
                 <td>{{ $i->status == 1 ? 'Sudah Diambil' : 'Belum Diambil' }}</td>
             </tr>
             @endforeach

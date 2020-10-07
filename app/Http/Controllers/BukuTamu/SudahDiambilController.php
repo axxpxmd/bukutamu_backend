@@ -63,6 +63,13 @@ class SudahDiambilController extends Controller
                     return 'Gojek';
                 }
             })
+            ->editColumn('tujuan', function ($p) {
+                if ($p->tujuan == 1) {
+                    return 'Mengambil';
+                } else {
+                    return 'Mengirim';
+                }
+            })
             ->addColumn('waktu', function ($p) {
                 $tanggal = Carbon::parse($p->tanggal)->isoFormat('D-MMM-Y');
                 return $tanggal . '&nbsp;&nbsp;' . $p->jam;

@@ -64,18 +64,18 @@ class ReportController extends Controller
         }
 
         return DataTables::of($bukuTamu)
-            ->addColumn('action', function ($p) {
-                if ($p->status == 0) {
-                    return "<a href='#' onclick='remove(" . $p->id . ")' class='text-success' title='Hapus Permission'><i class='icon-check'></i></a>";
-                } else {
-                    return '-';
-                }
-            })
             ->editColumn('jenis_paket', function ($p) {
                 if ($p->jenis_paket == 1) {
                     return 'Grab';
                 } else {
                     return 'Gojek';
+                }
+            })
+            ->editColumn('tujuan', function ($p) {
+                if ($p->tujuan == 1) {
+                    return 'Mengambil';
+                } else {
+                    return 'Mengirim';
                 }
             })
             ->addColumn('waktu', function ($p) {
