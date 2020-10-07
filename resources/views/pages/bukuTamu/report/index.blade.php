@@ -59,7 +59,7 @@
                             <div class="form-group row" style="margin-top: -10px">
                                 <label for="tanggal" class="col-form-label s-12 col-md-3 text-right"><strong>Cetak Report :</strong></label>
                                 <div class="col-sm-4 row">
-                                    <button class="btn btn-primary" style="margin-left:3%">Print</button>
+                                    <button class="btn btn-primary s-12" style="margin-left:3%">Save as PDF</button>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +101,18 @@
 </div>
 @endsection
 @section('script')
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript">
     var table = $('#dataTable').dataTable({
+       
+        buttons: [
+            {
+                text: 'My button',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Button activated' );
+                }
+            }
+        ],
         processing: true,
         serverSide: true,
         order: [ 0, 'asc' ],

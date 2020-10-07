@@ -39,14 +39,28 @@ class ReportController extends Controller
 
         if ($request->status != 99) {
             $bukuTamu = BukuTamu::where('status', $request->status)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
+            if ($request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         }
 
         if ($request->tgl_tinggal) {
             $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            if ($request->status != 99 && $request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         } elseif ($request->tgl_tinggal1) {
             $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            if ($request->status != 99 && $request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         } elseif ($request->tgl_tinggal && $request->tgl_tinggal1) {
             $bukuTamu = BukuTamu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
+            if ($request->status != 99 && $request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         }
 
         return DataTables::of($bukuTamu)
