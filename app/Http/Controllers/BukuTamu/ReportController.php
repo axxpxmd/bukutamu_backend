@@ -97,9 +97,9 @@ class ReportController extends Controller
             $bukuTamu = BukuTamu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
-        // $pdf = PDF::loadview($this->view . 'report', compact('bukuTamu'))->setPaper('a4', 'portrait');
-        // return $pdf->download('report');
+        $pdf = PDF::loadview($this->view . 'report', compact('bukuTamu'))->setPaper('a4', 'portrait');
+        return $pdf->download('report');
 
-        return view($this->view . 'report', compact('bukuTamu'));
+        // return view($this->view . 'report', compact('bukuTamu'));
     }
 }
