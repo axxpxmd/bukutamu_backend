@@ -67,9 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('MasterData')->namespace('BukuTamu')->name('master-data.')->group(function () {
-        // Buku Tamu
-        Route::resource('bukuTamu', 'BukuTamuController');
-        Route::post('bukuTamu/api', 'BukuTamuController@api')->name('bukuTamu.api');
+        // Sudah Diambil
+        Route::resource('sudah-diambil', 'SudahDiambilController');
+        Route::post('sudah-diambil/api', 'SudahDiambilController@api')->name('sudah-diambil.api');
         // Belum Diambil
         Route::resource('belum-diambil', 'BelumDiambilController');
         Route::post('belum-diambil', 'BelumDiambilController@api')->name('belum-diambil.api');

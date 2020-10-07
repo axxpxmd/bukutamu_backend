@@ -7,7 +7,7 @@
             <div class="row p-t-b-10 ">
                 <div class="col">
                     <h4>
-                        <i class="icon icon-document-cancel2 mr-2"></i>
+                        <i class="icon icon-document-checked2 mr-2"></i>
                         List {{ $title }}
                     </h4>
                 </div>

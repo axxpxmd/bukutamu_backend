@@ -38,7 +38,7 @@
     @endcan --}}
     <li class="header light"><strong>DATA REGISTER</strong></li>
     <li class="no-b">
-        <a href={{ route('master-data.bukuTamu.index') }}>
+        <a href={{ route('master-data.sudah-diambil.index') }}>
             <i class="icon icon-document-checked2 text-success s-18"></i> 
             <span>Sudah Diambil</span>
         </a>
