@@ -130,7 +130,7 @@
 
     function remove(id){
         $.confirm({
-            title: '',
+            title: 'testtt',
             content: 'Apakah Driver Sudah Mengambil Paket ?',
             icon: 'icon icon-question amber-text',
             theme: 'modern',
