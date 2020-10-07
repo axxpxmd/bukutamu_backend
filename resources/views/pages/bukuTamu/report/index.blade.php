@@ -7,7 +7,7 @@
             <div class="row p-t-b-10 ">
                 <div class="col">
                     <h4>
-                        <i class="icon icon-document-checked2 mr-2"></i>
+                        <i class="icon icon-report mr-2"></i>
                         List {{ $title }}
                     </h4>
                 </div>
@@ -56,12 +56,12 @@
                                     <input type="text" name="tgl_tinggal1" id="tgl_tinggal1" placeholder="" class="form-control r-0 light s-12 col-md-4" autocomplete="off" onchange="selectOnChange()"/>
                                 </div>
                             </div>
-                            <div class="form-group row" style="margin-top: -10px">
+                            {{-- <div class="form-group row" style="margin-top: -10px">
                                 <label for="tanggal" class="col-form-label s-12 col-md-3 text-right"><strong>Cetak Report :</strong></label>
                                 <div class="col-sm-4 row">
                                     <button class="btn btn-primary s-12" style="margin-left:3%">Save as PDF</button>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -111,6 +111,14 @@
 <script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
 <script type="text/javascript">
     var table = $('#dataTable').dataTable({
+        "dom": 'Blfrtip',
+        "buttons": [
+        'csv', 'pdf', 'copy', 'print'
+        ],
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
         processing: true,
         serverSide: true,
         order: [ 0, 'asc' ],
