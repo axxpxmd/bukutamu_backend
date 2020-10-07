@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <label class="col-md-2 text-right s-12"><strong>ID REgistrasi :</strong></label>
+                                        <label class="col-md-2 text-right s-12"><strong>ID Registrasi :</strong></label>
                                         <label class="col-md-3 s-12">{{ $bukuTamu->id_registrasi }}</label>
                                     </div>
                                     <div class="row">
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="row">
                                         <label class="col-md-2 text-right s-12"><strong>Foto :</strong></label>
-                                        <img class="ml-2 m-t-7 rounded-circle" src="{{ config('app.sftp_src').'/ava/'.$bukuTamu->foto }}" width="100" alt="icon">
+                                        <img class="ml-2 m-t-7 rounded-circle img-circular" height="100" src="{{ config('app.sftp_src').'/ava/'.$bukuTamu->foto }}" width="100" alt="icon">
                                     </div>
                                 </div>
                             </div>

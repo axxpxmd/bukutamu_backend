@@ -31,7 +31,6 @@ class ReportController extends Controller
 
     public function api(Request $request)
     {
-
         $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
 
         if ($request->jenis_jasa != 0) {
@@ -97,20 +96,36 @@ class ReportController extends Controller
 
     public function print(Request $request)
     {
+        $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
         if ($request->jenis_jasa != 0) {
             $bukuTamu = BukuTamu::where('jenis_paket', $request->jenis_jasa)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
         if ($request->status != 99) {
             $bukuTamu = BukuTamu::where('status', $request->status)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
+            if ($request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         }
 
         if ($request->tgl_tinggal) {
             $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            if ($request->status != 99 && $request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         } elseif ($request->tgl_tinggal1) {
             $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            if ($request->status != 99 && $request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         } elseif ($request->tgl_tinggal && $request->tgl_tinggal1) {
             $bukuTamu = BukuTamu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
+            if ($request->status != 99 && $request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
         }
 
         $pdf = PDF::loadview($this->view . 'report', compact('bukuTamu'))->setPaper('a4', 'portrait');

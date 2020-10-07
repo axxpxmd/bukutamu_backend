@@ -37,7 +37,7 @@
                                     <div>
                                         <strong>DISDUKCAPIL KOTA TANGERANG SELATAN</strong>
                                     </div>
-                                    <small>5000+ Visitor in a month</small>
+                                    <small>Dinas Kependudukan dan Catatan Sipil</small>
                                 </div>
                             </div>
                         </div>
