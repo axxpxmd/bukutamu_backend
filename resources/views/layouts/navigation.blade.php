@@ -36,11 +36,17 @@
         </a>
     </li>
     @endcan --}}
-    <li class="header light"><strong>MASTER DATA</strong></li>
+    <li class="header light"><strong>DATA REGISTER</strong></li>
     <li class="no-b">
         <a href={{ route('master-data.bukuTamu.index') }}>
-            <i class="icon icon-file amber-text s-18"></i> 
-            <span>Data Register</span>
+            <i class="icon icon-document-checked2 text-success s-18"></i> 
+            <span>Sudah Diambil</span>
+        </a>
+    </li>
+    <li class="no-b">
+        <a href="{{ route('master-data.belum-diambil.index') }}">
+            <i class="icon icon-document-cancel2 text-danger s-18"></i> 
+            <span>Belum Diambil</span>
         </a>
     </li>
 </ul>

@@ -31,7 +31,7 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- Messages -->
-                    <li class="dropdown custom-dropdown messages-menu">
+                    {{-- <li class="dropdown custom-dropdown messages-menu">
                         <a href="{{ route('blank-page') }}" class="nav-link" data-toggle="dropdown">
                             <i class="icon-message "></i>
                             <span class="badge badge-success badge-mini rounded-circle">4</span>
@@ -125,7 +125,7 @@
                             </li>
                             <li class="footer p-2 text-center"><a href="{{ route('blank-page') }}">View all</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <!-- Profile -->
                     <li class="dropdown custom-dropdown user user-menu ">
                         <a href="{{ route('blank-page') }}" class="nav-link" data-toggle="dropdown">

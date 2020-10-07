@@ -10,12 +10,11 @@ use App\Http\Controllers\Controller;
 // Models
 use App\Models\BukuTamu;
 
-class BukuTamuController extends Controller
+class BelumDiambilController extends Controller
 {
-
-    protected $view  = 'pages.bukuTamu.';
-    protected $title = 'Buku Tamu';
-    protected $route = 'master-data.bukuTamu.';
+    protected $view  = 'pages.bukuTamu.belumDiambil.';
+    protected $title = 'Belum Diambil';
+    protected $route = 'master-data.belum-diambil.';
 
     public function index()
     {
@@ -31,22 +30,18 @@ class BukuTamuController extends Controller
     public function api(Request $request)
     {
 
-        $bukuTamu = BukuTamu::orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        $bukuTamu = BukuTamu::where('status', 0)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
 
         if ($request->jenis_jasa != 0) {
-            $bukuTamu = BukuTamu::where('jenis_paket', $request->jenis_jasa)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            $bukuTamu = BukuTamu::where('jenis_paket', $request->jenis_jasa)->where('status', 0)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
-        if ($request->status != 99) {
-            $bukuTamu = BukuTamu::where('status', $request->status)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        }
-
-        if ($request->tgl_tinggal != null) {
-            $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        } elseif ($request->tgl_tinggal1 != null) {
-            $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        } elseif ($request->tgl_tinggal != null && $request->tgl_tinggal1 != null) {
-            $bukuTamu = BukuT2amu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        if ($request->tgl_tinggal) {
+            $bukuTamu = BukuTamu::where('status', 0)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        } elseif ($request->tgl_tinggal1) {
+            $bukuTamu = BukuTamu::where('status', 0)->hereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        } elseif ($request->tgl_tinggal && $request->tgl_tinggal1) {
+            $bukuTamu = BukuTamu::where('status', 0)->whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
         }
 
         return DataTables::of($bukuTamu)
@@ -82,7 +77,7 @@ class BukuTamuController extends Controller
             ->toJson();
     }
 
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $bukuTamu = BukuTamu::find($id);
         $bukuTamu->update([
@@ -100,8 +95,6 @@ class BukuTamuController extends Controller
         $title = $this->title;
 
         $bukuTamu = BukuTamu::find($id);
-
-        // dd($bukuTamu);
 
         return view($this->view . 'show', compact(
             'route',

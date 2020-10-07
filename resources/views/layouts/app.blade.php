@@ -54,9 +54,9 @@ $template = App\Models\Template::select('id', 'logo', 'logo_title')->first();
                             <a href="{{ route('master-profile.profile.index') }}" class="list-group-item list-group-item-action ">
                                 <i class="mr-2 icon-user text-blue"></i>Profile
                             </a>
-                            <a href="{{ route('blank-page') }}" class="list-group-item list-group-item-action">
+                            {{-- <a href="{{ route('blank-page') }}" class="list-group-item list-group-item-action">
                                 <i class="mr-2 icon-cogs"></i>Settings
-                            </a>
+                            </a> --}}
                             <a href="{{ route('master-profile.profile.editPassword', Auth::user()->admin_detail[0]->id) }}" class="list-group-item list-group-item-action">
                                 <i class="mr-2 icon-key4 orange-text"></i>Change Password
                             </a>

@@ -70,5 +70,8 @@ Route::group(['middleware' => ['auth']], function () {
         // Buku Tamu
         Route::resource('bukuTamu', 'BukuTamuController');
         Route::post('bukuTamu/api', 'BukuTamuController@api')->name('bukuTamu.api');
+        // Belum Diambil
+        Route::resource('belum-diambil', 'BelumDiambilController');
+        Route::post('belum-diambil', 'BelumDiambilController@api')->name('belum-diambil.api');
     });
 });
