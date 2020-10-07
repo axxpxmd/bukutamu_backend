@@ -56,12 +56,12 @@
                                     <input type="text" name="tgl_tinggal1" id="tgl_tinggal1" placeholder="" class="form-control r-0 light s-12 col-md-4" autocomplete="off" onchange="selectOnChange()"/>
                                 </div>
                             </div>
-                            <div class="form-group row" style="margin-top: -10px">
+                            {{-- <div class="form-group row" style="margin-top: -10px">
                                 <label for="tanggal" class="col-form-label s-12 col-md-3 text-right"><strong>Cetak Report :</strong></label>
                                 <div class="col-sm-4 row">
                                     <button class="btn btn-primary s-12" style="margin-left:3%">Save as PDF</button>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -102,16 +102,18 @@
 @endsection
 @section('script')
 <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
 <script type="text/javascript">
     var table = $('#dataTable').dataTable({
-       
+        dom: 'Bfrtip',
         buttons: [
-            {
-                text: 'My button',
-                action: function ( e, dt, node, config ) {
-                    alert( 'Button activated' );
-                }
-            }
+            'copy', 'csv', 'pdf', 'print',
         ],
         processing: true,
         serverSide: true,
@@ -139,6 +141,10 @@
             {data: 'action', name: 'action', orderable: false, searchable: false, className: 'text-center'}
         ]
     });
+
+    setInterval(function(){ 
+        table.api().ajax.reload();
+    }, 5000);
 
     function selectOnChange(){
         table.api().ajax.reload();

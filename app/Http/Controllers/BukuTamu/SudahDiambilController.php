@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BukuTamu;
 
 use DataTables;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -63,7 +64,8 @@ class SudahDiambilController extends Controller
                 }
             })
             ->addColumn('waktu', function ($p) {
-                return $p->tanggal . '&nbsp;&nbsp;' . $p->jam;
+                $tanggal = Carbon::parse($p->tanggal)->isoFormat('D-MMM-Y');
+                return $tanggal . '&nbsp;&nbsp;' . $p->jam;
             })
             ->editColumn('status', function ($p) {
                 if ($p->status == 0) {
