@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col">
                     <h4>
-                        <i class="icon icon-users mr-2"></i>
+                        <i class="icon icon-document-cancel2 mr-2"></i>
                         Show {{ $title }} | {{ $bukuTamu->nama }}
                     </h4>
                 </div>
@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="row">
                                         <label class="col-md-2 text-right s-12"><strong>Jam :</strong></label>
-                                        <label class="col-md-3 s-12">{{ $bukuTamu->tanggal->isoFormat('D MMMM Y') }}</label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->jam }}</label>
                                     </div>
                                     <div class="row">
                                         <label class="col-md-2 text-right s-12"><strong>Foto :</strong></label>

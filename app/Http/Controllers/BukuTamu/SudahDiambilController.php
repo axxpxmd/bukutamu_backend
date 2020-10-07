@@ -76,4 +76,18 @@ class SudahDiambilController extends Controller
             ->rawColumns(['action', 'id_registrasi', 'waktu', 'status'])
             ->toJson();
     }
+
+    public function show($id)
+    {
+        $route = $this->route;
+        $title = $this->title;
+
+        $bukuTamu = BukuTamu::find($id);
+
+        return view($this->view . 'show', compact(
+            'route',
+            'title',
+            'bukuTamu'
+        ));
+    }
 }
