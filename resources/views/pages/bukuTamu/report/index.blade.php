@@ -111,9 +111,12 @@
 <script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
 <script type="text/javascript">
     var table = $('#dataTable').dataTable({
-        "dom": 'Blfrtip',
-        "buttons": [
-        'csv', 'pdf', 'copy', 'print'
+        dom: 'Blfrtip',
+        buttons: [
+            'csv',
+            'pdf',
+            'copy',
+            'print'
         ],
         lengthMenu: [
             [ 10, 25, 50, -1 ],

@@ -22,7 +22,8 @@
                                     {{ $today }}
                                 </span>
                                 <div class="float-right">
-                                    <span class="icon icon-money-bag s-48"></span>
+                                    <span class="icon icon-arrow_downward s-48"></span>
+                                    <span class="icon icon-arrow_upward s-48"></span>
                                 </div>
                             </div>
                             <canvas width="378" 
