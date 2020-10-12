@@ -152,7 +152,7 @@
             {data: 'id_registrasi', name: 'id_registrasi'},
             {data: 'nama', name: 'nama'},
             {data: 'jenis_paket', name: 'jenis_paket'},
-            {data: 'no_plat', name: 'no_plat'},
+            {data: 'no_plat', name: 'no_plat', className: 'text-uppercase'},
             {data: 'penerima', name: 'penerima'},
             {data: 'waktu', name: 'waktu'},
             {data: 'tujuan', name: 'tujuan'},
