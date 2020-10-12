@@ -49,6 +49,16 @@
                                 </div>
                             </div> 
                             <div class="form-group row" style="margin-top: -10px">
+                                <label for="tujuan" class="col-form-label s-12 col-md-3 text-right"><strong>Tujuan :</strong></label>
+                                <div class="col-sm-4">
+                                    <select name="tujuan" id="tujuan" class="select2 form-control r-0 light s-12" onchange="selectOnChange()">
+                                        <option value="0">Semua</option>
+                                        <option value="1">Mengambil</option>
+                                        <option value="2">Mengirim</option>
+                                    </select>
+                                </div>
+                            </div> 
+                            <div class="form-group row" style="margin-top: -10px">
                                 <label for="tanggal" class="col-form-label s-12 col-md-3 text-right"><strong>Tanggal :</strong></label>
                                 <div class="col-sm-4 row">
                                     <input type="text" name="tgl_tinggal" id="tgl_tinggal" placeholder="" class="form-control r-0 light s-12 col-md-4 ml-3" autocomplete="off" onchange="selectOnChange()"/>
@@ -134,6 +144,7 @@
                 data.status = $('#status').val();
                 data.tgl_tinggal = $('#tgl_tinggal').val();
                 data.tgl_tinggal1 = $('#tgl_tinggal1').val();
+                data.tujuan = $('#tujuan').val();
             }
         },
         columns: [

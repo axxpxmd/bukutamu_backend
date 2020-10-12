@@ -45,21 +45,28 @@ class ReportController extends Controller
             }
         }
 
+        if ($request->tujuan != 0) {
+            $bukuTamu = BukuTamu::where('tujuan', $request->tujuan)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+
+            if ($request->status != 99 && $request->jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->where('tujuan', $request->tujuan)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            }
+        }
+
         if ($request->tgl_tinggal) {
             $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-            if ($request->status != 99 && $request->jenis_jasa != 0) {
-                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            if ($request->status != 99 && $request->jenis_jasa != 0 && $request->tujuan != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->where('tujuan', $request->tujuan)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
             }
         } elseif ($request->tgl_tinggal1) {
             $bukuTamu = BukuTamu::whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-            if ($request->status != 99 && $request->jenis_jasa != 0) {
-                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            if ($request->status != 99 && $request->jenis_jasa != 0 && $request->tujuan != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->where('tujuan', $request->tujuan)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
             }
         } elseif ($request->tgl_tinggal && $request->tgl_tinggal1) {
             $bukuTamu = BukuTamu::whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-
-            if ($request->status != 99 && $request->jenis_jasa != 0) {
-                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+            if ($request->status != 99 && $request->jenis_jasa != 0 && $request->tujuan != 0) {
+                $bukuTamu = BukuTamu::where('status', $request->status)->where('jenis_paket', $request->jenis_jasa)->where('tujuan', $request->tujuan)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
             }
         }
 
