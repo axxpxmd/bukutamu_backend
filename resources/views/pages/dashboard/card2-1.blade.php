@@ -38,6 +38,22 @@
                                     </div>
                                     <small>Dinas Kependudukan dan Catatan Sipil</small>
                                 </div>
+                                <div class="mt-5">
+                                    <table class="table table-hover table-bordered ">
+                                        <tbody>
+                                        <tr>
+                                            <th>Grab</th>
+                                            <th>Gojek</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="sc-counter">{{ $grab }}</td>
+                                            <td class="sc-counter">{{ $gojek }}</td>
+                                            <td class="sc-counter">{{ $total }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

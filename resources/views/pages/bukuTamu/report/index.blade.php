@@ -89,13 +89,16 @@
                                     <table id="dataTable" class="table table-striped table-bordered" style="width:100%">
                                         <thead>
                                             <th width="30">No</th>
-                                            <th>ID Registrasi</th>
-                                            <th>Nama Driver</th>
-                                            <th>Jenis Jasa</th>
-                                            <th>Plat Nomor</th>
-                                            <th>Penerima</th>
+                                            <th width="100">ID Registrasi</th>
+                                            <th width="120">Nama Driver</th>
+                                            <th width="70">Jenis Jasa</th>
+                                            <th width="80">Plat Nomor</th>
+                                            <th width="100">No Driver</th>
+                                            <th width="120">Petugas</th>
+                                            <th width="120">Pemesan</th>
+                                            <th width="100">No Pemesan</th>
                                             <th width="200">Waktu</th>
-                                            <th>Tujuan</th>
+                                            <th width="80">Tujuan</th>
                                             <th width="100">Status</th>
                                         </thead>
                                         <tbody></tbody>
@@ -152,8 +155,11 @@
             {data: 'id_registrasi', name: 'id_registrasi'},
             {data: 'nama', name: 'nama'},
             {data: 'jenis_paket', name: 'jenis_paket'},
-            {data: 'no_plat', name: 'no_plat', className: 'text-uppercase'},
+            {data: 'no_plat', name: 'no_plat'},
+            {data: 'no_telp', name: 'no_telp'},
             {data: 'penerima', name: 'penerima'},
+            {data: 'pemesan', name: 'pemesan'},
+            {data: 'no_telp_pemesan', name: 'no_telp_pemesan'},
             {data: 'waktu', name: 'waktu'},
             {data: 'tujuan', name: 'tujuan'},
             {data: 'status', name: 'status', className: 'text-center'},
@@ -162,7 +168,7 @@
 
     setInterval(function(){ 
         table.api().ajax.reload();
-    }, 5000);
+    }, 10000);
 
     function selectOnChange(){
         table.api().ajax.reload();

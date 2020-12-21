@@ -104,7 +104,7 @@ class SudahDiambilController extends Controller
                 if ($p->status == 0) {
                     return "Belum Diambil";
                 } else {
-                    return "Sudah Diambil";
+                    return "<span class='bg-success text-white p-1 rounded fs-12'>Sudah Diambil</span>";
                 }
             })
             ->addIndexColumn()

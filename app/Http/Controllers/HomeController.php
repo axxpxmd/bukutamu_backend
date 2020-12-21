@@ -27,8 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $gojek = BukuTamu::where('jenis_paket', 2)->count();
-
         $grab = BukuTamu::where('jenis_paket', 1)->count();
+        $total = BukuTamu::count();
+
         $check = Carbon::now();
 
         $time    = Carbon::now();
@@ -49,7 +50,8 @@ class HomeController extends Controller
             'gojekproses',
             'grabproses',
             'gojekselesai',
-            'grabselesai'
+            'grabselesai',
+            'total'
         ));
     }
 }

@@ -103,19 +103,22 @@ class ReportController extends Controller
                     return 'Mengirim';
                 }
             })
+            ->editColumn('no_plat', function ($p) {
+                return "<span class='text-uppercase'>" . $p->no_plat . "</span>";
+            })
             ->addColumn('waktu', function ($p) {
                 $tanggal = Carbon::parse($p->tanggal)->isoFormat('D-MMM-Y');
                 return $tanggal . '&nbsp;&nbsp;' . $p->jam;
             })
             ->editColumn('status', function ($p) {
                 if ($p->status == 0) {
-                    return "Belum Diambil";
+                    return "<span class='bg-danger text-white p-1 rounded fs-12'>Belum Diambil</span>";
                 } else {
-                    return "Sudah Diambil";
+                    return "<span class='bg-success text-white p-1 rounded fs-12'>Sudah Diambil</span>";
                 }
             })
             ->addIndexColumn()
-            ->rawColumns(['action', 'waktu', 'status'])
+            ->rawColumns(['action', 'waktu', 'status', 'no_plat'])
             ->toJson();
     }
 
