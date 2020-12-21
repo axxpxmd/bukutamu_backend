@@ -39,7 +39,7 @@
                                     <small>Dinas Kependudukan dan Catatan Sipil</small>
                                 </div>
                                 <div class="mt-5">
-                                    <table class="table table-hover table-bordered ">
+                                    <table class="table table-striped table-hover table-bordered ">
                                         <tbody>
                                         <tr>
                                             <th>Grab</th>
