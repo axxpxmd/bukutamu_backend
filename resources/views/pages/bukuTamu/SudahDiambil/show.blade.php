@@ -39,6 +39,18 @@
                                         <label class="col-md-3 s-12">{{ $bukuTamu->nama }}</label>
                                     </div>
                                     <div class="row">
+                                        <label class="col-md-2 text-right s-12"><strong>No Telp :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->no_telp }}</label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-2 text-right s-12"><strong>Pemesan / Customer :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->pemesan }}</label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-2 text-right s-12"><strong>No Telp Pemesan :</strong></label>
+                                        <label class="col-md-3 s-12">{{ $bukuTamu->no_telp_pemesan }}</label>
+                                    </div>
+                                    <div class="row">
                                         <label class="col-md-2 text-right s-12"><strong>Jenis Jasa :</strong></label>
                                         <label class="col-md-3 s-12">{{ $bukuTamu->jenis_paket == 1 ? 'Grab' : 'Gojek' }}</label>
                                     </div>
@@ -60,7 +72,7 @@
                                     </div>
                                     <div class="row">
                                         <label class="col-md-2 text-right s-12"><strong>Foto :</strong></label>
-                                        <img class="ml-2 m-t-7 rounded-circle img-circular" height="100" src="{{ config('app.sftp_src').'/ava/'.$bukuTamu->foto }}" width="100" alt="icon">
+                                        <img class="ml-2 m-t-7 img-fluid" height="300" src="{{ config('app.sftp_src').'/ava/'.$bukuTamu->foto }}" width="300" alt="icon">
                                     </div>
                                 </div>
                             </div>

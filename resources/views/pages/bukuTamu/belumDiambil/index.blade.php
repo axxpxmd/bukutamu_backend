@@ -64,7 +64,8 @@
                                             <th>Nama Driver</th>
                                             <th>Jenis Jasa</th>
                                             <th>Plat Nomor</th>
-                                            <th>Penerima</th>
+                                            <th>Petugas</th>
+                                            <th>Pemesan</th>
                                             <th width="200">Waktu</th>
                                             <th>Tujuan</th>
                                             <th width="100">Status</th>
@@ -103,8 +104,9 @@
             {data: 'id_registrasi', name: 'id_registrasi'},
             {data: 'nama', name: 'nama'},
             {data: 'jenis_paket', name: 'jenis_paket'},
-            {data: 'no_plat', name: 'no_plat', className: 'text-uppercase'},
+            {data: 'no_plat', name: 'no_plat'},
             {data: 'penerima', name: 'penerima'},
+            {data: 'pemesan', name: 'pemesan'},
             {data: 'waktu', name: 'waktu'},
             {data: 'tujuan', name: 'tujuan'},
             {data: 'status', name: 'status', className: 'text-center'},

@@ -1,13 +1,14 @@
 <div class="p-0">
     <div class="chart-pie">
         <canvas id="myChart"></canvas>
+        <span></span>
     </div>
     <div class="mt-4 text-center small">
         <span class="mr-2">
-            <i class="icon icon-circle text-primary"></i> Grab
+            <i class="icon icon-circle text-success"></i> Gojek
         </span>
         <span class="mr-2">
-            <i class="icon icon-circle text-success"></i> Gojek
+            <i class="icon icon-circle text-primary"></i> Grab
         </span>
     </div>
 </div>

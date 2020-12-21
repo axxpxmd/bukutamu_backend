@@ -33,16 +33,39 @@ class SudahDiambilController extends Controller
 
         $bukuTamu = BukuTamu::where('status', 1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
 
-        if ($request->jenis_jasa != 0) {
-            $bukuTamu = BukuTamu::where('jenis_paket', $request->jenis_jasa)->where('status', 1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        $jenis_jasa   = $request->jenis_jasa;
+        $tgl_tinggal  = $request->tgl_tinggal;
+        $tgl_tinggal1 = $request->tgl_tinggal1;
+
+        if ($jenis_jasa != 0) {
+            $bukuTamu = BukuTamu::where('jenis_paket', $jenis_jasa)
+                ->where('status', 1)
+                ->orderBy('status', 'ASC')
+                ->orderBy('id', 'DESC')->get();
         }
 
-        if ($request->tgl_tinggal) {
-            $bukuTamu = BukuTamu::where('status', 1)->whereDate('tanggal', $request->tgl_tinggal)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        } elseif ($request->tgl_tinggal1) {
-            $bukuTamu = BukuTamu::where('status', 1)->hereDate('tanggal', $request->tgl_tinggal1)->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
-        } elseif ($request->tgl_tinggal && $request->tgl_tinggal1) {
-            $bukuTamu = BukuTamu::where('status', 1)->whereBetween('tanggal', [$request->tgl_tinggal, $request->tgl_tinggal1])->orderBy('status', 'ASC')->orderBy('id', 'DESC')->get();
+        if ($tgl_tinggal != null) {
+            $bukuTamu = BukuTamu::whereDate('tanggal', $tgl_tinggal)->where('status', 1)
+                ->orderBy('status', 'ASC')
+                ->orderBy('id', 'DESC')->get();
+            if ($jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('jenis_paket', $jenis_jasa)->whereDate('tanggal', $tgl_tinggal)
+                    ->where('status', 1)
+                    ->orderBy('status', 'ASC')
+                    ->orderBy('id', 'DESC')->get();
+            }
+        }
+
+        if ($tgl_tinggal && $tgl_tinggal1 != null) {
+            $bukuTamu = BukuTamu::whereBetween('tanggal', [$tgl_tinggal, $tgl_tinggal1])->where('status', 1)
+                ->orderBy('status', 'ASC')
+                ->orderBy('id', 'DESC')->get();
+            if ($jenis_jasa != 0) {
+                $bukuTamu = BukuTamu::where('jenis_paket', $jenis_jasa)->whereBetween('tanggal', [$tgl_tinggal, $tgl_tinggal1])
+                    ->where('status', 1)
+                    ->orderBy('status', 'ASC')
+                    ->orderBy('id', 'DESC')->get();
+            }
         }
 
         return DataTables::of($bukuTamu)
@@ -70,6 +93,9 @@ class SudahDiambilController extends Controller
                     return 'Mengirim';
                 }
             })
+            ->editColumn('no_plat', function ($p) {
+                return "<span class='text-uppercase'>" . $p->no_plat . "</span>";
+            })
             ->addColumn('waktu', function ($p) {
                 $tanggal = Carbon::parse($p->tanggal)->isoFormat('D-MMM-Y');
                 return $tanggal . '&nbsp;&nbsp;' . $p->jam;
@@ -82,7 +108,7 @@ class SudahDiambilController extends Controller
                 }
             })
             ->addIndexColumn()
-            ->rawColumns(['action', 'id_registrasi', 'waktu', 'status'])
+            ->rawColumns(['action', 'id_registrasi', 'waktu', 'status', 'no_plat'])
             ->toJson();
     }
 
