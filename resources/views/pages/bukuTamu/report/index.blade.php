@@ -127,7 +127,11 @@
         dom: 'Blfrtip',
         buttons: [
             'csv',
-            'pdf',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL'
+            },
             'copy',
             'print'
         ],
