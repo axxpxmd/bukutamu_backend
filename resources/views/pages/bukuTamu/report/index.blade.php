@@ -96,7 +96,7 @@
                                             <th width="100">No Driver</th>
                                             <th width="120">Petugas</th>
                                             <th width="120">Pemesan</th>
-                                            <th width="100">No Pemesan</th>
+                                            {{-- <th width="100">No Pemesan</th> --}}
                                             <th width="200">Waktu</th>
                                             <th width="80">Tujuan</th>
                                             <th width="100">Status</th>
@@ -163,7 +163,7 @@
             {data: 'no_telp', name: 'no_telp'},
             {data: 'penerima', name: 'penerima'},
             {data: 'pemesan', name: 'pemesan'},
-            {data: 'no_telp_pemesan', name: 'no_telp_pemesan'},
+            // {data: 'no_telp_pemesan', name: 'no_telp_pemesan'},
             {data: 'waktu', name: 'waktu'},
             {data: 'tujuan', name: 'tujuan'},
             {data: 'status', name: 'status', className: 'text-center'},
