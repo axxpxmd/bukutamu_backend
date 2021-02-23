@@ -118,10 +118,6 @@
         ]
     });
 
-    setInterval(function(){ 
-        table.api().ajax.reload();
-    }, 5000);
-
     function selectOnChange(){
         table.api().ajax.reload();
     }
